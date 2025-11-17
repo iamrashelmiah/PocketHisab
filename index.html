@@ -522,7 +522,7 @@
                         <input type="checkbox" id="rememberMe">
                         <span>Remember me</span>
                     </label>
-                    <a href="#" class="forgot-password" id="forgotPassword">Forgot Password?</a>
+                    <a href="forgot-password.html" class="forgot-password" id="forgotPassword">Forgot Password?</a>
                 </div>
 
                 <!-- Login Button -->
@@ -651,7 +651,7 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
                 if (this.getAttribute('href') === '/pricing' || this.getAttribute('href') === '/contact') {
-                    e.preventDefault();
+                 //   e.preventDefault();
                     showMessage(`${this.textContent} page coming soon!`, 'success');
                 }
             });
