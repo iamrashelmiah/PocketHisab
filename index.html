@@ -85,12 +85,12 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
         }
 
@@ -98,8 +98,8 @@
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 600;
-            font-size: 15px;
-            padding: 8px 16px;
+            font-size: 14px;
+            padding: 6px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
@@ -114,23 +114,23 @@
             color: #ffd700;
         }
 
-        /* Toggle Switches in Navbar */
+        /* Toggle Controls - More Compact */
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
-        /* Capsule Toggle Styles */
+        /* Compact Capsule Toggle Styles */
         .capsule-toggle {
-            width: 120px;
-            height: 40px;
+            width: 70px;
+            height: 32px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 4px;
+            border-radius: 20px;
+            padding: 2px;
             cursor: pointer;
             position: relative;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
 
@@ -146,13 +146,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
             z-index: 2;
-            border-radius: 20px;
+            border-radius: 15px;
         }
 
         .toggle-thumb.active {
@@ -161,54 +160,48 @@
         }
 
         .toggle-icon {
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .toggle-text {
-            white-space: nowrap;
+            display: none;
         }
 
         /* Mobile Responsive for Toggles */
         @media (max-width: 768px) {
             .navbar {
-                padding: 12px 20px;
-                flex-wrap: wrap;
+                padding: 10px 15px;
             }
             
             .nav-controls {
-                display: flex;
-                gap: 10px;
-                margin-left: auto;
+                gap: 6px;
             }
             
             .capsule-toggle {
-                width: 80px;
-                height: 35px;
-            }
-            
-            .toggle-text {
-                display: none;
-            }
-            
-            .toggle-icon {
-                font-size: 16px;
+                width: 60px;
+                height: 28px;
             }
             
             .nav-links {
-                gap: 15px;
+                gap: 10px;
             }
             
             .nav-links a {
-                font-size: 14px;
-                padding: 6px 12px;
+                font-size: 12px;
+                padding: 4px 8px;
             }
             
-            .glass-card {
-                padding: 30px 25px;
+            .nav-brand {
+                font-size: 1.5rem;
             }
             
-            .logo-text {
-                font-size: 2rem;
+            .logo-circle {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .logo-circle i {
+                font-size: 16px;
             }
         }
 
@@ -541,11 +534,9 @@
                     <div class="toggle-track">
                         <div class="toggle-thumb">
                             <span class="toggle-icon">☀️</span>
-                            <span class="toggle-text">Light</span>
                         </div>
                         <div class="toggle-thumb">
                             <span class="toggle-icon">🌙</span>
-                            <span class="toggle-text">Dark</span>
                         </div>
                     </div>
                 </div>
@@ -554,12 +545,10 @@
                 <div class="capsule-toggle" id="languageToggle">
                     <div class="toggle-track">
                         <div class="toggle-thumb">
-                            <span class="toggle-icon">🇺🇸</span>
-                            <span class="toggle-text">EN</span>
+                            <span class="toggle-icon">EN</span>
                         </div>
                         <div class="toggle-thumb">
-                            <span class="toggle-icon">🇧🇩</span>
-                            <span class="toggle-text">BN</span>
+                            <span class="toggle-icon">BN</span>
                         </div>
                     </div>
                 </div>
