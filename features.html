@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHisab - Features</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        /* Rainbow Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: #ff6b6b;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Feature Card */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #2c3e50;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-highlights {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-highlights li {
+            color: #2c3e50;
+            opacity: 0.8;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-highlights li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        /* Summary Section */
+        .summary-section {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .summary-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .summary-text {
+            color: #2c3e50;
+            opacity: 0.9;
+            line-height: 1.7;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.3);
+            color: #2c3e50;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-content {
+                padding: 120px 15px 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                justify-content: center;
+            }
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #533483);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.dark-mode .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .page-title {
+            background: linear-gradient(45deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.dark-mode .page-subtitle,
+        body.dark-mode .feature-title,
+        body.dark-mode .feature-description,
+        body.dark-mode .feature-highlights li,
+        body.dark-mode .summary-title,
+        body.dark-mode .summary-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .summary-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">PocketHisab</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html" class="active">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">PocketHisab Features</h1>
+            <p class="page-subtitle">Complete personal accounting solution with advanced features for modern financial management</p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <!-- Dashboard -->
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Dashboard</h3>
+                <p class="feature-description">Comprehensive financial overview with real-time analytics and insights</p>
+                <ul class="feature-highlights">
+                    <li>Financial Summary</li>
+                    <li>Cash Flow Charts</li>
+                    <li>Net Worth Tracker</li>
+                    <li>Quick Stats Cards</li>
+                </ul>
+            </div>
+
+            <!-- Admin Panel -->
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Admin Panel</h3>
+                <p class="feature-description">Complete system administration and user management</p>
+                <ul class="feature-highlights">
+                    <li>User Management</li>
+                    <li>System Settings</li>
+                    <li>Analytics & Reports</li>
+                    <li>Security Settings</li>
+                </ul>
+            </div>
+
+            <!-- SMS and Email -->
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">SMS & Email</h3>
+                <p class="feature-description">Integrated communication system with bulk messaging</p>
+                <ul class="feature-highlights">
+                    <li>Bulk SMS & Email</li>
+                    <li>Message Templates</li>
+                    <li>Auto Greetings</li>
+                    <li>Delivery Reports</li>
+                </ul>
+            </div>
+
+            <!-- Contract -->
+            <div class="feature-card">
+                <div class="feature-icon">📑</div>
+                <h3 class="feature-title">Contract Management</h3>
+                <p class="feature-description">Digital contract creation and management system</p>
+                <ul class="feature-highlights">
+                    <li>Contract Templates</li>
+                    <li>E-Signature</li>
+                    <li>Renewal Reminders</li>
+                    <li>Contract Analytics</li>
+                </ul>
+            </div>
+
+            <!-- Investment -->
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3 class="feature-title">Investment Tracking</h3>
+                <p class="feature-description">Complete investment portfolio management</p>
+                <ul class="feature-highlights">
+                    <li>Portfolio Overview</li>
+                    <li>ROI Calculator</li>
+                    <li>Performance Analysis</li>
+                    <li>Investment Types</li>
+                </ul>
+            </div>
+
+            <!-- Income -->
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Income Management</h3>
+                <p class="feature-description">Track and manage all income sources efficiently</p>
+                <ul class="feature-highlights">
+                    <li>Multiple Income Sources</li>
+                    <li>Recurring Income</li>
+                    <li>Income Categories</li>
+                    <li>Income Reports</li>
+                </ul>
+            </div>
+
+            <!-- Expenses -->
+            <div class="feature-card">
+                <div class="feature-icon">💸</div>
+                <h3 class="feature-title">Expense Tracking</h3>
+                <p class="feature-description">Smart expense management with categorization</p>
+                <ul class="feature-highlights">
+                    <li>Expense Categories</li>
+                    <li>Spending Analysis</li>
+                    <li>Budget Management</li>
+                    <li>Recurring Expenses</li>
+                </ul>
+            </div>
+
+            <!-- Asset -->
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3 class="feature-title">Asset Management</h3>
+                <p class="feature-description">Track and value all your assets</p>
+                <ul class="feature-highlights">
+                    <li>Fixed & Current Assets</li>
+                    <li>Asset Valuation</li>
+                    <li>Depreciation Tracking</li>
+                    <li>Maintenance Schedule</li>
+                </ul>
+            </div>
+
+            <!-- Liability -->
+            <div class="feature-card">
+                <div class="feature-icon">🏦</div>
+                <h3 class="feature-title">Liability Management</h3>
+                <p class="feature-description">Manage loans, debts and liabilities effectively</p>
+                <ul class="feature-highlights">
+                    <li>Loan Management</li>
+                    <li>Credit Card Tracking</li>
+                    <li>EMI Schedule</li>
+                    <li>Debt Analysis</li>
+                </ul>
+            </div>
+
+            <!-- Payment -->
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3 class="feature-title">Payment System</h3>
+                <p class="feature-description">Complete payment processing and management</p>
+                <ul class="feature-highlights">
+                    <li>Multiple Payment Methods</li>
+                    <li>Scheduled Payments</li>
+                    <li>Payment History</li>
+                    <li>Bulk Payments</li>
+                </ul>
+            </div>
+
+            <!-- Bankbook -->
+            <div class="feature-card">
+                <div class="feature-icon">📒</div>
+                <h3 class="feature-title">Bankbook</h3>
+                <p class="feature-description">Digital bankbook with transaction management</p>
+                <ul class="feature-highlights">
+                    <li>Bank Reconciliation</li>
+                    <li>Transaction History</li>
+                    <li>Cash Flow Tracking</li>
+                    <li>Balance Management</li>
+                </ul>
+            </div>
+
+            <!-- Accounts -->
+            <div class="feature-card">
+                <div class="feature-icon">📁</div>
+                <h3 class="feature-title">Accounts System</h3>
+                <p class="feature-description">Complete accounting system with financial statements</p>
+                <ul class="feature-highlights">
+                    <li>Chart of Accounts</li>
+                    <li>Trial Balance</li>
+                    <li>Financial Statements</li>
+                    <li>Account Settings</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <h2 class="summary-title">Ready to Get Started?</h2>
+            <p class="summary-text">
+                PocketHisab offers a complete personal accounting solution with all the features you need for modern financial management. 
+                From basic income-expense tracking to advanced investment management and automated communications - we've got you covered.
+            </p>
+            <div class="cta-buttons">
+                <a href="/signup.html" class="btn btn-primary">
+                    📝 Create Account
+                </a>
+                <a href="/" class="btn btn-secondary">
+                    🔐 Login Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current states
+        let isDarkMode = false;
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            
+            // Show message
+            showMessage(isDarkMode ? 'Dark mode activated' : 'Light mode activated', 'success');
+        }
+
+        // Show message function
+        function showMessage(text, type) {
+            // Create temporary message element
+            const message = document.createElement('div');
+            message.textContent = text;
+            message.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 10px;
+                font-weight: 500;
+                z-index: 1001;
+                background: ${type === 'success' ? 'rgba(46, 125, 50, 0.9)' : 'rgba(198, 40, 40, 0.9)'};
+                color: white;
+                backdrop-filter: blur(10px);
+            `;
+            
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 3000);
+        }
+
+        // Navigation Links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '/pricing' || this.getAttribute('href') === '/contact') {
+                    e.preventDefault();
+                    showMessage(`${this.textContent} page coming soon!`, 'success');
+                }
+            });
+        });
+
+        // Add click animation to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-10px)';
+                }, 150);
+            });
+        });
+
+        // Page loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎉 PocketHisab Features Page Loaded!');
+            
+            // Add animation to feature cards on load
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Add keyboard shortcut for dark mode (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+            }
+        });
+    </script>
+</body>
+</html>

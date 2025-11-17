@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHisab - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #6a11cb, #2575fc, #8a2be2, #4b0082);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Bar - Redesigned */
+        .navbar {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #8a2be2, #6a11cb);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-circle i {
+            color: white;
+            font-size: 20px;
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #e0e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffd700;
+        }
+
+        /* Toggle Switches in Navbar */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modern-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 60px;
+            justify-content: center;
+        }
+
+        .modern-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .modern-toggle.active {
+            background: rgba(255, 255, 255, 0.35);
+            border-color: #ffd700;
+        }
+
+        .toggle-icon {
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .modern-toggle.active .toggle-icon {
+            transform: scale(1.1);
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 20px;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 35px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Logo Container in Main Card */
+        .main-logo-container {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .main-logo-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #8a2be2, #6a11cb);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .main-logo-circle i {
+            color: white;
+            font-size: 32px;
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #e0e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            color: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #8a2be2;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .password-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Form Links */
+        .form-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .forgot-password {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #ffd700;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #8a2be2, #6a11cb);
+            color: white;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6);
+        }
+
+        /* Sign Up Section */
+        .signup-section {
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+
+        .signup-link {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .signup-link:hover {
+            color: #ffed4e;
+            transform: translateX(5px);
+        }
+
+        /* Message Box */
+        .message {
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .message.success {
+            background: rgba(46, 125, 50, 0.2);
+            color: #a5d6a7;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .message.error {
+            background: rgba(198, 40, 40, 0.2);
+            color: #ef9a9a;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-icon.whatsapp { background: rgba(37, 211, 102, 0.3); }
+        .social-icon.telegram { background: rgba(0, 136, 204, 0.3); }
+        .social-icon.facebook { background: rgba(59, 89, 152, 0.3); }
+        .social-icon.instagram { background: rgba(225, 48, 108, 0.3); }
+        .social-icon.email { background: rgba(219, 68, 55, 0.3); }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .glass-card {
+                padding: 30px 25px;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: linear-gradient(45deg, #2d1b69, #1a0f3d, #0a061f, #4a1c7a);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar - Redesigned -->
+    <nav class="navbar">
+        <!-- Left Side: Logo + Brand Name -->
+        <div class="nav-left">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="nav-brand">PocketHisab</div>
+            </div>
+        </div>
+
+        <!-- Right Side: Navigation Links + Toggles -->
+        <div class="nav-right">
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="features.html">Features</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <!-- Toggle Controls -->
+            <div class="nav-controls">
+                <!-- Dark/Light Mode Toggle -->
+                <div class="modern-toggle" id="darkModeToggle">
+                    <span class="toggle-icon">🌙</span>
+                </div>
+                
+                <!-- Language Toggle -->
+                <div class="modern-toggle" id="languageToggle">
+                    <span class="toggle-icon">🌐</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Glass Card -->
+        <div class="glass-card">
+            <!-- Logo Container -->
+            <div class="main-logo-container">
+                <div class="main-logo-circle">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="logo-text">PocketHisab</div>
+                <div class="logo-subtitle">Smart Personal Accounting</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email or Mobile</label>
+                    <input type="text" id="email" class="form-control" placeholder="Enter your email or mobile" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                        <span class="password-toggle" onclick="togglePassword()">👁️</span>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="form-links">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password" id="forgotPassword">Forgot Password?</a>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary">Login to Account</button>
+            </form>
+
+            <!-- Sign Up Section -->
+            <div class="signup-section">
+                <span>Don't have an account? </span>
+                <a href="signup.html" class="signup-link" id="signUpLink">
+                    Create Account →
+                </a>
+            </div>
+
+            <!-- Message Box -->
+            <div id="message" class="message"></div>
+
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="https://wa.me/your-number" class="social-icon whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://t.me/your-channel" class="social-icon telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://facebook.com/your-page" class="social-icon facebook" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com/your-profile" class="social-icon instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="mailto:your-email@gmail.com" class="social-icon email">
+                    <i class="far fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current states
+        let isDarkMode = false;
+        let isEnglish = true;
+
+        // Show message function
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 4000);
+        }
+
+        // Toggle Password Visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = event.target;
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = '👁️';
+            }
+        }
+
+        // Toggle Dark Mode
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            this.classList.toggle('active', isDarkMode);
+            
+            const icon = this.querySelector('.toggle-icon');
+            icon.textContent = isDarkMode ? '☀️' : '🌙';
+            
+            showMessage(isDarkMode ? 'Dark mode activated' : 'Light mode activated', 'success');
+        });
+
+        // Toggle Language
+        document.getElementById('languageToggle').addEventListener('click', function() {
+            isEnglish = !isEnglish;
+            this.classList.toggle('active', !isEnglish);
+            
+            const icon = this.querySelector('.toggle-icon');
+            icon.textContent = isEnglish ? '🌐' : '🇧🇩';
+            
+            showMessage(isEnglish ? 'English language selected' : 'বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+        });
+
+        // Login Form Handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (!email || !password) {
+                showMessage('Please fill in all fields!', 'error');
+                return;
+            }
+            
+            showMessage('Logging in... Please wait!', 'success');
+            
+            // Simulate API call
+            setTimeout(() => {
+                showMessage('✅ Login successful! Welcome to PocketHisab!', 'success');
+            }, 1500);
+        });
+
+        // Sign Up Link - Direct to Sign Up Page
+        document.getElementById('signUpLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/signup.html';
+        });
+
+        // Forgot Password
+        document.getElementById('forgotPassword').addEventListener('click', function(e) {
+            e.preventDefault();
+            showMessage('Password reset feature coming soon!', 'success');
+        });
+
+        // Navigation Links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '/pricing' || this.getAttribute('href') === '/contact') {
+                    e.preventDefault();
+                    showMessage(`${this.textContent} page coming soon!`, 'success');
+                }
+            });
+        });
+
+        // Page loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎉 PocketHisab Purple Theme Loaded!');
+            showMessage('Welcome to PocketHisab! Ready to login.', 'success');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PocketHisab - Contact Us</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        /* Rainbow Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: #ff6b6b;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            padding: 100px 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .info-content h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .info-content p {
+            color: #2c3e50;
+            opacity: 0.8;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: white;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+            font-family: inherit;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-primary:disabled:hover {
+            transform: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Message Box */
+        .message {
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+
+        .message.error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #c62828;
+            border: 1px solid #f44336;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .main-content {
+                padding: 120px 15px 30px;
+            }
+            
+            .contact-info,
+            .contact-form {
+                padding: 30px 25px;
+            }
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460, #533483);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.dark-mode .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .page-title {
+            background: linear-gradient(45deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        body.dark-mode .page-subtitle,
+        body.dark-mode .info-title,
+        body.dark-mode .info-content h4,
+        body.dark-mode .info-content p,
+        body.dark-mode .form-title,
+        body.dark-mode .form-group label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.dark-mode .contact-info,
+        body.dark-mode .contact-form {
+            background: rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .info-item {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.dark-mode .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        body.dark-mode .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">PocketHisab</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features.html">Features</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Contact Us</h1>
+            <p class="page-subtitle">Get in touch with us. We'd love to hear from you and help with any questions.</p>
+        </div>
+
+        <!-- Contact Container -->
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2 class="info-title">Get In Touch</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">📧</div>
+                    <div class="info-content">
+                        <h4>Email Us</h4>
+                        <p>support@pockethisab.com</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-content">
+                        <h4>Call Us</h4>
+                        <p>+880 1XXX-XXXXXX</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <h4>Visit Us</h4>
+                        <p>Dhaka, Bangladesh</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">🕒</div>
+                    <div class="info-content">
+                        <h4>Business Hours</h4>
+                        <p>Sunday - Thursday: 9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="https://facebook.com/pockethisab" class="social-link" target="_blank">📘</a>
+                    <a href="https://twitter.com/pockethisab" class="social-link" target="_blank">🐦</a>
+                    <a href="https://linkedin.com/company/pockethisab" class="social-link" target="_blank">💼</a>
+                    <a href="https://wa.me/8801XXXXXXXXX" class="social-link" target="_blank">💚</a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 class="form-title">Send Us a Message</h2>
+                
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" class="form-control" placeholder="Enter message subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mail Body *</label>
+                        <textarea id="message" class="form-control" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        📤 Send Message
+                    </button>
+                </form>
+
+                <!-- Message Box -->
+                <div id="formMessage" class="message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Current states
+        let isDarkMode = false;
+
+        // Show message function
+        function showMessage(text, type) {
+            const message = document.getElementById('formMessage');
+            message.textContent = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+
+        // Toggle Dark Mode
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            
+            // Show message
+            showMessage(isDarkMode ? 'Dark mode activated' : 'Light mode activated', 'success');
+        }
+
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (!email || !subject || !message) {
+                showMessage('Please fill in all required fields!', 'error');
+                return;
+            }
+            
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showMessage('Please enter a valid email address!', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '⏳ Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate email sending (in real implementation, use backend API)
+            setTimeout(() => {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Show success message
+                showMessage('✅ Message sent successfully! We will get back to you soon.', 'success');
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                
+                // In real implementation, you would send data to your backend
+                // which would then forward the email to admin
+                console.log('Email to admin:', {
+                    from: email,
+                    subject: subject,
+                    message: message,
+                    timestamp: new Date().toISOString()
+                });
+                
+            }, 2000);
+        });
+
+        // Navigation Links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '/features' || this.getAttribute('href') === '/pricing') {
+                    e.preventDefault();
+                    showMessage(`${this.textContent} page coming soon!`, 'success');
+                }
+            });
+        });
+
+        // Page loaded successfully
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎉 PocketHisab Contact Page Loaded!');
+            
+            // Add animation to contact items on load
+            const contactItems = document.querySelectorAll('.info-item, .contact-form, .contact-info');
+            contactItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Add keyboard shortcut for dark mode (Ctrl+D)
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'd') {
+                e.preventDefault();
+                toggleDarkMode();
+            }
+        });
+    </script>
+</body>
+</html>
