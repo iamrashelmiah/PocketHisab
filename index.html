@@ -170,8 +170,17 @@
             font-size: 14px;
         }
 
+        /* Mobile Only Language Toggle */
+        .mobile-only {
+            display: none;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .mobile-only {
+                display: flex;
+            }
+            
             .navbar {
                 padding: 10px 20px;
                 flex-direction: column;
@@ -585,8 +594,8 @@
                     </div>
                 </div>
                 
-                <!-- Language Toggle -->
-                <div class="capsule-toggle" id="languageToggle">
+                <!-- Language Toggle - Visible only on mobile -->
+                <div class="capsule-toggle mobile-only" id="languageToggle">
                     <div class="toggle-track">
                         <div class="toggle-thumb">
                             <span class="toggle-icon">EN</span>
