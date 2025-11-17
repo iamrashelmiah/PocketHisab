@@ -170,14 +170,30 @@
             font-size: 14px;
         }
 
-        /* Mobile Only Language Toggle */
-        .mobile-only {
+        /* Mobile Top Toggles */
+        .mobile-top-toggles {
             display: none;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-toggle {
+            width: 70px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 3px;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .mobile-only {
+            .mobile-top-toggles {
                 display: flex;
             }
             
@@ -185,6 +201,7 @@
                 padding: 10px 20px;
                 flex-direction: column;
                 gap: 10px;
+                margin-top: 60px;
             }
             
             .nav-left {
@@ -207,7 +224,7 @@
             }
             
             .nav-controls {
-                gap: 8px;
+                display: none;
             }
             
             .capsule-toggle {
@@ -235,7 +252,7 @@
                 padding: 6px 12px;
             }
             
-            .capsule-toggle {
+            .capsule-toggle, .mobile-toggle {
                 width: 65px;
                 height: 30px;
             }
@@ -558,6 +575,31 @@
     </style>
 </head>
 <body>
+    <!-- Mobile Top Toggles (Visible only on mobile) -->
+    <div class="mobile-top-toggles">
+        <div class="mobile-toggle" id="mobileDarkModeToggle">
+            <div class="toggle-track">
+                <div class="toggle-thumb">
+                    <span class="toggle-icon">☀️</span>
+                </div>
+                <div class="toggle-thumb">
+                    <span class="toggle-icon">🌙</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mobile-toggle" id="mobileLanguageToggle">
+            <div class="toggle-track">
+                <div class="toggle-thumb">
+                    <span class="toggle-icon">EN</span>
+                </div>
+                <div class="toggle-thumb">
+                    <span class="toggle-icon">BN</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Bar - Redesigned -->
     <nav class="navbar">
         <!-- Left Side: Logo + Brand Name -->
@@ -580,7 +622,7 @@
                 <a href="contact.html">Contact</a>
             </div>
 
-            <!-- Toggle Controls -->
+            <!-- Toggle Controls (Visible only on desktop) -->
             <div class="nav-controls">
                 <!-- Dark/Light Mode Toggle -->
                 <div class="capsule-toggle" id="darkModeToggle">
@@ -594,8 +636,8 @@
                     </div>
                 </div>
                 
-                <!-- Language Toggle - Visible only on mobile -->
-                <div class="capsule-toggle mobile-only" id="languageToggle">
+                <!-- Language Toggle -->
+                <div class="capsule-toggle" id="languageToggle">
                     <div class="toggle-track">
                         <div class="toggle-thumb">
                             <span class="toggle-icon">EN</span>
@@ -713,58 +755,90 @@
             }
         }
 
-        // Improved Dark Mode Toggle with Capsule Style
-        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const isRightClick = clickX > rect.width / 2;
-            
+        // Toggle functionality for both desktop and mobile
+        function setupToggle(toggleId, callback) {
+            const toggle = document.getElementById(toggleId);
+            if (toggle) {
+                toggle.addEventListener('click', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const isRightClick = clickX > rect.width / 2;
+                    callback(isRightClick);
+                });
+            }
+        }
+
+        // Dark Mode Toggle
+        function handleDarkModeToggle(isRightClick) {
             if (isRightClick) {
                 // Dark Mode
                 isDarkMode = true;
                 document.body.classList.add('dark-mode');
-                updateDarkModeToggle(true);
+                updateAllDarkModeToggles(true);
                 showMessage('Dark mode activated', 'success');
             } else {
                 // Light Mode
                 isDarkMode = false;
                 document.body.classList.remove('dark-mode');
-                updateDarkModeToggle(false);
+                updateAllDarkModeToggles(false);
                 showMessage('Light mode activated', 'success');
             }
-        });
+        }
 
-        // Improved Language Toggle with Capsule Style
-        document.getElementById('languageToggle').addEventListener('click', function(e) {
-            const rect = this.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const isRightClick = clickX > rect.width / 2;
-            
+        // Language Toggle
+        function handleLanguageToggle(isRightClick) {
             if (isRightClick) {
                 // Bangla
                 isEnglish = false;
-                updateLanguageToggle(false);
+                updateAllLanguageToggles(false);
                 showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
             } else {
                 // English
                 isEnglish = true;
-                updateLanguageToggle(true);
+                updateAllLanguageToggles(true);
                 showMessage('English language selected', 'success');
             }
-        });
-
-        // Update Toggle Visual State
-        function updateDarkModeToggle(isDark) {
-            const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
-            thumbs[0].classList.toggle('active', !isDark);
-            thumbs[1].classList.toggle('active', isDark);
         }
 
-        function updateLanguageToggle(isEnglish) {
-            const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
-            thumbs[0].classList.toggle('active', isEnglish);
-            thumbs[1].classList.toggle('active', !isEnglish);
+        // Update All Dark Mode Toggles
+        function updateAllDarkModeToggles(isDark) {
+            const allDarkToggles = [
+                'darkModeToggle',
+                'mobileDarkModeToggle'
+            ];
+            
+            allDarkToggles.forEach(toggleId => {
+                const toggle = document.getElementById(toggleId);
+                if (toggle) {
+                    const thumbs = toggle.querySelectorAll('.toggle-thumb');
+                    thumbs[0].classList.toggle('active', !isDark);
+                    thumbs[1].classList.toggle('active', isDark);
+                }
+            });
         }
+
+        // Update All Language Toggles
+        function updateAllLanguageToggles(isEnglish) {
+            const allLanguageToggles = [
+                'languageToggle',
+                'mobileLanguageToggle'
+            ];
+            
+            allLanguageToggles.forEach(toggleId => {
+                const toggle = document.getElementById(toggleId);
+                if (toggle) {
+                    const thumbs = toggle.querySelectorAll('.toggle-thumb');
+                    thumbs[0].classList.toggle('active', isEnglish);
+                    thumbs[1].classList.toggle('active', !isEnglish);
+                }
+            });
+        }
+
+        // Setup all toggles
+        setupToggle('darkModeToggle', handleDarkModeToggle);
+        setupToggle('mobileDarkModeToggle', handleDarkModeToggle);
+        setupToggle('languageToggle', handleLanguageToggle);
+        setupToggle('mobileLanguageToggle', handleLanguageToggle);
 
         // Login Form Handler
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -808,8 +882,8 @@
 
         // Initialize toggles on page load
         document.addEventListener('DOMContentLoaded', function() {
-            updateDarkModeToggle(isDarkMode);
-            updateLanguageToggle(isEnglish);
+            updateAllDarkModeToggles(isDarkMode);
+            updateAllLanguageToggles(isEnglish);
             console.log('🎉 PocketHisab Purple Theme Loaded!');
             showMessage('Welcome to PocketHisab! Ready to login.', 'success');
         });
