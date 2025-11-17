@@ -121,38 +121,95 @@
             gap: 10px;
         }
 
-        .modern-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* Capsule Toggle Styles */
+        .capsule-toggle {
+            width: 120px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
             border-radius: 25px;
+            padding: 4px;
+            cursor: pointer;
+            position: relative;
             border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
-            cursor: pointer;
-            min-width: 60px;
+        }
+
+        .toggle-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .toggle-thumb {
+            flex: 1;
+            display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            z-index: 2;
+            border-radius: 20px;
         }
 
-        .modern-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .modern-toggle.active {
-            background: rgba(255, 255, 255, 0.35);
-            border-color: #ffd700;
+        .toggle-thumb.active {
+            color: white;
+            background: linear-gradient(135deg, #8a2be2, #6a11cb);
         }
 
         .toggle-icon {
-            font-size: 16px;
-            transition: all 0.3s ease;
+            font-size: 14px;
         }
 
-        .modern-toggle.active .toggle-icon {
-            transform: scale(1.1);
-            color: #ffd700;
+        .toggle-text {
+            white-space: nowrap;
+        }
+
+        /* Mobile Responsive for Toggles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 20px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-controls {
+                display: flex;
+                gap: 10px;
+                margin-left: auto;
+            }
+            
+            .capsule-toggle {
+                width: 80px;
+                height: 35px;
+            }
+            
+            .toggle-text {
+                display: none;
+            }
+            
+            .toggle-icon {
+                font-size: 16px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            .glass-card {
+                padding: 30px 25px;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
         }
 
         /* Main Content */
@@ -300,6 +357,35 @@
             font-weight: 500;
         }
 
+        /* Round Remember Me Checkbox */
+        .remember-me input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .remember-me input[type="checkbox"]:checked {
+            background: linear-gradient(135deg, #8a2be2, #6a11cb);
+            border-color: #8a2be2;
+        }
+
+        .remember-me input[type="checkbox"]:checked::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
         .forgot-password {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
@@ -419,31 +505,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 12px 20px;
-                flex-wrap: wrap;
-            }
-            
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .nav-links a {
-                font-size: 14px;
-                padding: 6px 12px;
-            }
-            
-            .glass-card {
-                padding: 30px 25px;
-            }
-            
-            .logo-text {
-                font-size: 2rem;
-            }
-        }
-
         /* Dark Mode */
         body.dark-mode {
             background: linear-gradient(45deg, #2d1b69, #1a0f3d, #0a061f, #4a1c7a);
@@ -476,13 +537,31 @@
             <!-- Toggle Controls -->
             <div class="nav-controls">
                 <!-- Dark/Light Mode Toggle -->
-                <div class="modern-toggle" id="darkModeToggle">
-                    <span class="toggle-icon">🌙</span>
+                <div class="capsule-toggle" id="darkModeToggle">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <span class="toggle-icon">☀️</span>
+                            <span class="toggle-text">Light</span>
+                        </div>
+                        <div class="toggle-thumb">
+                            <span class="toggle-icon">🌙</span>
+                            <span class="toggle-text">Dark</span>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Language Toggle -->
-                <div class="modern-toggle" id="languageToggle">
-                    <span class="toggle-icon">🌐</span>
+                <div class="capsule-toggle" id="languageToggle">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <span class="toggle-icon">🇺🇸</span>
+                            <span class="toggle-text">EN</span>
+                        </div>
+                        <div class="toggle-thumb">
+                            <span class="toggle-icon">🇧🇩</span>
+                            <span class="toggle-text">BN</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -592,28 +671,58 @@
             }
         }
 
-        // Toggle Dark Mode
-        document.getElementById('darkModeToggle').addEventListener('click', function() {
-            isDarkMode = !isDarkMode;
-            document.body.classList.toggle('dark-mode', isDarkMode);
-            this.classList.toggle('active', isDarkMode);
+        // Improved Dark Mode Toggle with Capsule Style
+        document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
             
-            const icon = this.querySelector('.toggle-icon');
-            icon.textContent = isDarkMode ? '☀️' : '🌙';
-            
-            showMessage(isDarkMode ? 'Dark mode activated' : 'Light mode activated', 'success');
+            if (isRightClick) {
+                // Dark Mode
+                isDarkMode = true;
+                document.body.classList.add('dark-mode');
+                updateDarkModeToggle(true);
+                showMessage('Dark mode activated', 'success');
+            } else {
+                // Light Mode
+                isDarkMode = false;
+                document.body.classList.remove('dark-mode');
+                updateDarkModeToggle(false);
+                showMessage('Light mode activated', 'success');
+            }
         });
 
-        // Toggle Language
-        document.getElementById('languageToggle').addEventListener('click', function() {
-            isEnglish = !isEnglish;
-            this.classList.toggle('active', !isEnglish);
+        // Improved Language Toggle with Capsule Style
+        document.getElementById('languageToggle').addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const isRightClick = clickX > rect.width / 2;
             
-            const icon = this.querySelector('.toggle-icon');
-            icon.textContent = isEnglish ? '🌐' : '🇧🇩';
-            
-            showMessage(isEnglish ? 'English language selected' : 'বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+            if (isRightClick) {
+                // Bangla
+                isEnglish = false;
+                updateLanguageToggle(false);
+                showMessage('বাংলা ভাষা নির্বাচন করা হয়েছে', 'success');
+            } else {
+                // English
+                isEnglish = true;
+                updateLanguageToggle(true);
+                showMessage('English language selected', 'success');
+            }
         });
+
+        // Update Toggle Visual State
+        function updateDarkModeToggle(isDark) {
+            const thumbs = document.querySelectorAll('#darkModeToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', !isDark);
+            thumbs[1].classList.toggle('active', isDark);
+        }
+
+        function updateLanguageToggle(isEnglish) {
+            const thumbs = document.querySelectorAll('#languageToggle .toggle-thumb');
+            thumbs[0].classList.toggle('active', isEnglish);
+            thumbs[1].classList.toggle('active', !isEnglish);
+        }
 
         // Login Form Handler
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -638,27 +747,27 @@
         // Sign Up Link - Direct to Sign Up Page
         document.getElementById('signUpLink').addEventListener('click', function(e) {
             e.preventDefault();
-            window.location.href = '/signup.html';
+            window.location.href = 'signup.html';
         });
 
         // Forgot Password
         document.getElementById('forgotPassword').addEventListener('click', function(e) {
-        //    e.preventDefault();
             showMessage('Password reset feature coming soon!', 'success');
         });
 
         // Navigation Links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '/pricing' || this.getAttribute('href') === '/contact') {
-                 //   e.preventDefault();
+                if (this.getAttribute('href') === 'pricing.html' || this.getAttribute('href') === 'contact.html') {
                     showMessage(`${this.textContent} page coming soon!`, 'success');
                 }
             });
         });
 
-        // Page loaded successfully
+        // Initialize toggles on page load
         document.addEventListener('DOMContentLoaded', function() {
+            updateDarkModeToggle(isDarkMode);
+            updateLanguageToggle(isEnglish);
             console.log('🎉 PocketHisab Purple Theme Loaded!');
             showMessage('Welcome to PocketHisab! Ready to login.', 'success');
         });
