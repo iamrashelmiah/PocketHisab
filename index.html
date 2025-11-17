@@ -85,7 +85,7 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 30px;
         }
 
         .nav-links {
@@ -115,14 +115,14 @@
             color: #ffd700;
         }
 
-        /* Toggle Controls - Now on the right side before navigation */
+        /* Toggle Controls */
         .nav-controls {
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        /* Capsule Toggle Styles */
+        /* Capsule Toggle Styles - FIXED */
         .capsule-toggle {
             width: 80px;
             height: 36px;
@@ -133,6 +133,7 @@
             position: relative;
             border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            display: flex;
         }
 
         .capsule-toggle:hover {
@@ -170,29 +171,53 @@
             font-size: 14px;
         }
 
-        /* Mobile Responsive */
+        /* Mobile Responsive - FIXED */
         @media (max-width: 768px) {
             .navbar {
                 padding: 10px 20px;
-                flex-wrap: wrap;
+                flex-direction: column;
+                gap: 15px;
             }
             
             .nav-left {
-                order: 1;
-                flex: 1;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-right {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+                gap: 15px;
             }
             
             .nav-controls {
-                order: 2;
-                gap: 8px;
+                order: -1;
             }
             
             .nav-links {
-                order: 3;
-                flex: 1 1 100%;
-                justify-content: center;
-                margin-top: 10px;
                 gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            
+            .capsule-toggle {
+                width: 70px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 8px 15px;
+                gap: 12px;
+            }
+            
+            .nav-links {
+                gap: 10px;
             }
             
             .nav-links a {
@@ -201,49 +226,12 @@
             }
             
             .capsule-toggle {
-                width: 70px;
-                height: 32px;
-            }
-            
-            .nav-brand {
-                font-size: 1.4rem;
-            }
-            
-            .logo-circle {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .logo-circle i {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 8px 15px;
-            }
-            
-            .nav-links {
-                gap: 8px;
-            }
-            
-            .nav-links a {
-                font-size: 11px;
-                padding: 5px 10px;
-            }
-            
-            .capsule-toggle {
                 width: 65px;
                 height: 30px;
             }
             
-            .toggle-icon {
-                font-size: 11px;
-            }
-            
             .nav-brand {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
         }
 
@@ -559,9 +547,9 @@
             </div>
         </div>
 
-        <!-- Right Side: Toggles first, then Navigation Links -->
+        <!-- Right Side: Toggles + Navigation Links -->
         <div class="nav-right">
-            <!-- Toggle Controls - Now placed BEFORE navigation links -->
+            <!-- Toggle Controls -->
             <div class="nav-controls">
                 <!-- Dark/Light Mode Toggle -->
                 <div class="capsule-toggle" id="darkModeToggle">
