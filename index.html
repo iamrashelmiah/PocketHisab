@@ -85,12 +85,12 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
         }
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
         }
 
@@ -98,15 +98,16 @@
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
-            padding: 6px 12px;
-            border-radius: 20px;
+            font-size: 15px;
+            padding: 10px 20px;
+            border-radius: 25px;
             transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .nav-links a.active {
@@ -114,24 +115,30 @@
             color: #ffd700;
         }
 
-        /* Toggle Controls - More Compact */
+        /* Toggle Controls */
         .nav-controls {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
         }
 
-        /* Compact Capsule Toggle Styles */
+        /* Capsule Toggle Styles */
         .capsule-toggle {
-            width: 70px;
-            height: 32px;
+            width: 80px;
+            height: 36px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 2px;
+            border-radius: 25px;
+            padding: 3px;
             cursor: pointer;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+        }
+
+        .capsule-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .toggle-track {
@@ -146,12 +153,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.8);
             transition: all 0.3s ease;
             z-index: 2;
-            border-radius: 15px;
+            border-radius: 20px;
         }
 
         .toggle-thumb.active {
@@ -160,26 +167,54 @@
         }
 
         .toggle-icon {
-            font-size: 12px;
+            font-size: 14px;
         }
 
-        .toggle-text {
-            display: none;
-        }
-
-        /* Mobile Responsive for Toggles */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .navbar {
-                padding: 10px 15px;
+                padding: 10px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-left {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 16px;
             }
             
             .nav-controls {
-                gap: 6px;
+                gap: 8px;
             }
             
             .capsule-toggle {
-                width: 60px;
-                height: 28px;
+                width: 70px;
+                height: 32px;
+            }
+            
+            .nav-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 8px 15px;
+                gap: 8px;
             }
             
             .nav-links {
@@ -188,11 +223,20 @@
             
             .nav-links a {
                 font-size: 12px;
-                padding: 4px 8px;
+                padding: 6px 12px;
+            }
+            
+            .capsule-toggle {
+                width: 65px;
+                height: 30px;
+            }
+            
+            .toggle-icon {
+                font-size: 12px;
             }
             
             .nav-brand {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
             
             .logo-circle {
@@ -211,7 +255,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 100px 20px 20px;
+            padding: 120px 20px 20px;
         }
 
         /* Glass Card */
